@@ -1,0 +1,11 @@
+{
+  "appId": "cyou.sk5s.app.alsoweather",
+  "appName": "alsoweather",
+  "bundledWebRuntime": true,
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

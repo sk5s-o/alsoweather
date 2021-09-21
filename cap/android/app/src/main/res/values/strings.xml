@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">alsoweather</string>
+    <string name="title_activity_main">alsoweather</string>
+    <string name="package_name">cyou.sk5s.app.alsoweather</string>
+    <string name="custom_url_scheme">cyou.sk5s.app.alsoweather</string>
+</resources>
