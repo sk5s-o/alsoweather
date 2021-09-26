@@ -86,7 +86,7 @@ function xdata() {
 // refresh
 function refresh() {
   // set loading class
-  loading_weather_skeleton.classList.toggle("invisible")
+  loading_weather_skeleton.classList.add("invisible")
   cwb_location_select.parentElement.classList.add("is-loading")
   console.log("refresh now")
   fetchcwb(CWB_API)
@@ -110,7 +110,7 @@ function fillin_quote(data_element, element_to_fill_in, element_to_remove) {
 function fillin_weather(element, element_to_be_fill_in, element_to_remove) {
   element_to_be_fill_in.innerHTML = ""
   element_to_be_fill_in.appendChild(element)
-  element_to_remove.classList.toggle("invisible")
+  element_to_remove.classList.remove("invisible")
   cwb_location_select.parentElement.classList.remove("is-loading")
 }
 
