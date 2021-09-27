@@ -1,0 +1,11 @@
+baseURL: 'http://example.org/'
+languageCode: 'en-us'
+title: 'alsoweather news api'
+
+outputs:
+  page: 
+    - json
+  section:
+    - json
+  home:
+    - json

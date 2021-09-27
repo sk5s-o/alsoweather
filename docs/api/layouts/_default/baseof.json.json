@@ -1,0 +1,3 @@
+{
+    "news" : {{ block "response" .}}{{ end }}
+}

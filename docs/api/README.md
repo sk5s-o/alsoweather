@@ -1,0 +1,1 @@
+https://forestry.io/blog/build-a-json-api-with-hugo/
