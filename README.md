@@ -13,6 +13,14 @@
 
 ![splash](https://rzxbsbriajkqxdsmxvev.supabase.in/storage/v1/object/public/image/splash-compress.jpg)
 
+# Next step
+
+- [ ] 讀出天氣(TTS)
+- [ ] run in background(capacitor)
+- [ ] 推送通知(notification)
+- [ ] 新聞嵌入(news)
+- [ ] 更新推送(update)
+
 ```
      _    ____                        _           _   
  ___| | __ ___| ___   _ __  _ __ ___ (_) ___  ___| |_ 
