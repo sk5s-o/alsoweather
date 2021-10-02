@@ -15,6 +15,7 @@
 
 # Next step
 
+- [ ] uglify javascript
 - [ ] 讀出天氣(TTS)
 - [ ] run in background(capacitor)
 - [ ] 推送通知(notification)
