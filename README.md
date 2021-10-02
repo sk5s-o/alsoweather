@@ -11,6 +11,8 @@
 
 簡易天氣app，有mobile、desktop版本。最大溫度折線圖、最小溫度折線圖、地區記憶，chart.js，改善時間顯示
 
+<a href="https://www.sk5s.cyou/alsoweather/docs" target="_blank"><img src="https://rzxbsbriajkqxdsmxvev.supabase.in/storage/v1/object/public/image/file-text-line.png" style="width:80px"> docs 使用文件➡️</a>
+
 ![splash](https://rzxbsbriajkqxdsmxvev.supabase.in/storage/v1/object/public/image/splash-compress.jpg)
 
 # Next step
