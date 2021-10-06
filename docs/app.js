@@ -18,7 +18,8 @@ let parsed_cwb_data = {
   now: {}
 }
 window.model = {
-  mylocation: ''
+  mylocation: '',
+  speech_script: ''
 }
 
 // grab html dom element
@@ -35,11 +36,11 @@ cwb_location_select.addEventListener("input",locationInputService)
 // init
 document.addEventListener("DOMContentLoaded", () => {
   restorelocation()
-  speechSynthesis_init()
   fetchcwb(CWB_API)
   console.log(CWB_API)
   fetchquote(QUOTE_API)
   console.log(QUOTE_API)
+  speechSynthesis_init()
 })
 
 // fetch cwb api
@@ -60,9 +61,10 @@ async function fetchcwb(url) {
     parsed_cwb_data.now.MaxT = fetched_cwb_data[location_index].weatherElement[4].time[0].parameter.parameterName
 
     fillin_weather(generate_now_weather(parsed_cwb_data.now),weather_block_inner_content,loading_weather_skeleton)
-
+    model.speech_script = generate_now_weather_speech_script(parsed_cwb_data.now)
   } catch (error) {
-    alert(error.message)
+    let toast = new Toasty();
+    toast.error(`Error: ${error.message}`);
   }
 }
 
@@ -77,7 +79,8 @@ async function fetchquote(url) {
     console.log("quote fetch complete")
     fillin_quote(fetched_quote_data, quote_block_inner_content, loading_quote_skeleton)
   } catch (error) {
-    alert(error.message)
+    let toast = new Toasty();
+    toast.error(`Error: ${error.message}`);
   }
 }
 
@@ -182,45 +185,46 @@ function generate_now_weather(nowstate) {
   return div
 }
 
+// use now weather state object to generate html code
+function generate_now_weather_speech_script(nowstate) {
+  let msg = ""
+  msg = `今天天氣${nowstate.CI}、${nowstate.Wx}，最高溫度維${nowstate.MaxT}度C，最低溫度維${nowstate.MinT}度C，降雨機率${nowstate.PoP}趴。`
+  return msg
+}
+
 // speechSynthesis init
-function speechSynthesis_init(){
-  let synth = window.speechSynthesis;
-  if (!synth) return
-  // if synth in window object, add play button
-  let button = document.createElement("button")
-  button.classList.add("button","is-large","is-success","is-outlined","is-fullwidth","mt-3","mb-3")
-  button.addEventListener("click", () => {
-    voices = synth.getVoices();
-    let voices = []
-    let select = document.createElement("select")
-    for(let i = 0; i < voices.length ; i++) {
-      let option = document.createElement('option');
-      option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
-  
-      if(voices[i].default) {
-        option.textContent += ' -- DEFAULT';
-      }
-  
-      option.setAttribute('data-lang', voices[i].lang);
-      option.setAttribute('data-name', voices[i].name);
-      select.appendChild(option)
-    }
-  })
-  button.innerHTML += `
-<span class="icon is-small">
-  <i class="fas fa-book-reader"></i>
-</span>
-<span class="ml-3">Read</span>
-  `
-  let conf_button = document.createElement("button")
-  // conf_button.addEventListener("click")
-  conf_button.classList.add("button","is-large","is-success","is-outlined","is-fullwidth","mt-3","mb-3")
-  conf_button.innerHTML += `
-<span class="icon is-small">
-  <i class="fas fa-cog"></i>
-</span>
-<span class="ml-3">Read Settings</span>
-  `
-  speechSynthesis_container.appendChild(button)
-  speechSynthesis_container.appendChild(conf_button)
+async function speechSynthesis_init(){
+  // if synth in window object, add play section
+  if ('speechSynthesis' in window) {
+    speechSynthesis_container.innerHTML = `
+  <div class="columns">
+    <div class="column">
+      <button class="button is-success is-outlined is-large is-fullwidth" @click="read">
+        <span class="icon is-small">
+          <i class="fas fa-book-reader"></i>
+        </span>
+        <span class="ml-3">Read</span>
+      </button>
+    </div>
+    <!--<div class="column">
+      <button class="button is-success is-outlined is-large is-fullwidth" @click="open_voice_setting_modal">
+        <span class="icon is-small">
+          <i class="fas fa-cog"></i>
+        </span>
+      </button>
+    </div>-->
+  </div>
+    `
+  }
+}
+function read(){
+  let msg = "哇！出了點錯誤"
+  if (model.speech_script) msg = model.speech_script
+  let speech = new SpeechSynthesisUtterance();
+  speech.lang = "zh-TW"
+  speech.text = msg
+  speech.volume = 1
+  speech.rate = 1
+  speech.pitch = 1
+  window.speechSynthesis.speak(speech)
 }
