@@ -7,6 +7,7 @@ const CWB_API = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?A
 // api url
 const QUOTE_API = `https://api.quotable.io/random`
 
+
 // declare objects
 const fetched_quote_data = {
   content: null,
@@ -26,6 +27,7 @@ let quote_block_inner_content = document.getElementById("quote_block_inner_conte
 let loading_quote_skeleton = document.getElementById("loading_quote_skeleton")
 let weather_block_inner_content = document.getElementById("weather_block_inner_content")
 let loading_weather_skeleton = document.getElementById("loading_weather_skeleton")
+let speechSynthesis_container = document.getElementById("speechSynthesis_container")
 
 // eventlistener
 cwb_location_select.addEventListener("input",locationInputService)
@@ -33,6 +35,7 @@ cwb_location_select.addEventListener("input",locationInputService)
 // init
 document.addEventListener("DOMContentLoaded", () => {
   restorelocation()
+  speechSynthesis_init()
   fetchcwb(CWB_API)
   console.log(CWB_API)
   fetchquote(QUOTE_API)
@@ -177,4 +180,47 @@ function generate_now_weather(nowstate) {
   </div>
   `
   return div
+}
+
+// speechSynthesis init
+function speechSynthesis_init(){
+  let synth = window.speechSynthesis;
+  if (!synth) return
+  // if synth in window object, add play button
+  let button = document.createElement("button")
+  button.classList.add("button","is-large","is-success","is-outlined","is-fullwidth","mt-3","mb-3")
+  button.addEventListener("click", () => {
+    voices = synth.getVoices();
+    let voices = []
+    let select = document.createElement("select")
+    for(let i = 0; i < voices.length ; i++) {
+      let option = document.createElement('option');
+      option.textContent = voices[i].name + ' (' + voices[i].lang + ')';
+  
+      if(voices[i].default) {
+        option.textContent += ' -- DEFAULT';
+      }
+  
+      option.setAttribute('data-lang', voices[i].lang);
+      option.setAttribute('data-name', voices[i].name);
+      select.appendChild(option)
+    }
+  })
+  button.innerHTML += `
+<span class="icon is-small">
+  <i class="fas fa-book-reader"></i>
+</span>
+<span class="ml-3">Read</span>
+  `
+  let conf_button = document.createElement("button")
+  // conf_button.addEventListener("click")
+  conf_button.classList.add("button","is-large","is-success","is-outlined","is-fullwidth","mt-3","mb-3")
+  conf_button.innerHTML += `
+<span class="icon is-small">
+  <i class="fas fa-cog"></i>
+</span>
+<span class="ml-3">Read Settings</span>
+  `
+  speechSynthesis_container.appendChild(button)
+  speechSynthesis_container.appendChild(conf_button)
 }
