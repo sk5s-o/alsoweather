@@ -4,9 +4,9 @@
   "display": "standalone",
   "name": "alsoweather",
   "orientation": "any",
-  "scope": "/alsoweather",
+  "scope": "/alsoweather/",
   "short_name": "weather",
-  "start_url": "/alsoweather",
+  "start_url": "/alsoweather/",
   "theme_color": "#ffffff",
   "icons": [
     {
