@@ -26,3 +26,7 @@
 .invisible{
   display: none;
 }
+
+.toast-wrapper{
+  z-index: 1000;
+}

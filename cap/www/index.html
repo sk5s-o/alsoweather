@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-tw" class="has-navbar-fixed-top has-navbar-fixed-bottom">
+<html lang="zh-tw" class="has-navbar-fixed-top">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>alsoweather</title>
+  <link rel="shortcut icon" type="image/jpg" href="https://rzxbsbriajkqxdsmxvev.supabase.in/storage/v1/object/public/image/icon.png"/>
   <!-- alpine -->
   <script defer src="https://unpkg.com/alpinejs@3.4.1/dist/cdn.min.js"></script>
   <!-- css -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma-rtl.min.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+  <link rel="stylesheet" href="toasty.min.css">
   <!-- custom css -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -85,6 +87,9 @@
       <span class="ml-3">Refresh</span>
     </button>
 
+    <!-- SpeechSynthesis button -->
+    <div id="speechSynthesis_container"></div>
+
     <!-- weather info -->
     <div class="card has-background-success-light mt-3 mb-3">
       <div class="card-content">
@@ -127,14 +132,14 @@
 
   <!-- footer -->
   <div class="pt-6"></div>
-  <footer class="navbar has-background-success-light is-fixed-bottom">
+  <footer class="navbar has-background-success-light">
     <div style="text-align: center;width: 100%;">
       sk5s project
     </div>
   </footer>
 
   <!-- custom js -->
+  <script src="toasty.min.js"></script>
   <script src="app.js"></script>
-  <script src="capacitor.js"></script>
 </body>
 </html>

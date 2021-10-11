@@ -13,7 +13,7 @@ function createWindow () {
 	icon: path.join(__dirname, 'icon.png')
   })
 
-  win.loadFile('index.html')
+  win.loadFile('src/index.html')
 }
 
 app.whenReady().then(() => {

@@ -94,6 +94,7 @@ function refresh() {
   // set loading class
   loading_weather_skeleton.classList.remove("invisible")
   cwb_location_select.parentElement.classList.add("is-loading")
+  weather_block_inner_content.innerHTML = ""
   console.log("refresh now")
   fetchcwb(CWB_API)
 }

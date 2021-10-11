@@ -1,6 +1,6 @@
 {
   "name": "alsoweather",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "簡易天氣app，有mobile、desktop版本。最大溫度折線圖、最小溫度折線圖、地區記憶，chart.js，改善時間顯示",
   "main": "main.js",
   "scripts": {
