@@ -10,7 +10,7 @@
   "theme_color": "#ffffff",
   "icons": [
     {
-      "src": "https://rzxbsbriajkqxdsmxvev.supabase.in/storage/v1/object/public/image/icon.png",
+      "src": "icon.png",
       "type": "image/png",
       "sizes": "512x512"
     }
